@@ -1,0 +1,24 @@
+{
+  "name": "employee_ms",
+  "version": "1.0.0",
+  "description": "[![GitHub followers](https://img.shields.io/github/followers/Nmenotti20?label=Follow&style=social)](https://github.com/Nmenotti20) [![project-JavaScript-language](https://img.shields.io/static/v1?label=javascript&message=72.1%&color=yellow)](https://github.com/Nmenotti20/Employee_MS.git) [![project-html-language](https://img.shields.io/static/v1?label=html&message=27.6%&color=red)](https://github.com/Nmenotti20/Employee_MS.git) [![license](https://img.shields.io/badge/License-mit-brightgreen.svg)](https://choosealicense.com/licenses/mit/)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nmenotti20/Employee_MS.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nmenotti20/Employee_MS/issues"
+  },
+  "homepage": "https://github.com/Nmenotti20/Employee_MS#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "mysql": "^2.18.1"
+  }
+}
