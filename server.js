@@ -188,5 +188,22 @@ function addRL() {
 }
 
 // Create the function editRL to edit an employee role. //
-
+function editRL() {
+    inquirer.prompt([
+        {
+            message: "Enter the Last Name of the employee you would like to edit... ",
+            type: "input",
+            name: "last_name"
+        }, {
+            message: "Enter the new role ID... ",
+            type: "number",
+            name: "role_id"
+        }
+    ]).then(function (response) {
+        connection.query("EDIT employee SET role_id = ? WHERE last_name = ?", [response.role_id, response.name], function (err, data) {
+            console.table(data);
+        })
+        startQuestions();
+    })
+}
 
