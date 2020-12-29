@@ -32,6 +32,7 @@ connection.connect(function(err) {
   startQuestions();
 });
 
+// create the function startQuestions with inquirer.prompt to sequence through the initial questions. // 
 function startQuestions() {
     inquirer.prompt({
         name: "action",
@@ -91,6 +92,70 @@ function startQuestions() {
 };
 
 
+// Create the function showEE to display the existing employees in the console.table. //
+function showEE() {
+    connection.query("SELECT * FROM employee", function (err, data) {
+        console.table(data);
+        startQuestions();
+    })
+}
 
+
+// Create the function showDP to display the existing departments in the console.table. //
+function showDP() {
+    connection.query("SELECT * FROM department", function (err, data) {
+        console.table(data);
+        startQuestions();
+    })
+}
+
+// Create the function addEE to add a new employee. //
+function addEE() {
+    inquirer.prompt([{
+            type: "input",
+            name: "firstName",
+            message: "Enter the employee's first name... "
+        },
+        {
+            type: "input",
+            name: "lastName",
+            message: "Enter the employee's last name... "
+        },
+        {
+            type: "number",
+            name: "roleId",
+            message: "Enter the employee's role ID... "
+        },
+        {
+            type: "number",
+            name: "managerId",
+            message: "Enter the employee manager's ID... "
+        }
+    ]).then(function(res) {
+        if (res.managerId) {
+        connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [res.firstName, res.lastName, res.roleId, res.managerId], function(err, data) {
+            if (err) throw err;
+            console.table("Successfully added!");
+            askQuestions();
+        })
+    } else {
+        connection.query('INSERT INTO employee (first_name, last_name, role_id) VALUES (?, ?, ?)', [res.firstName, res.lastName, res.roleId], function(err, data) {
+            if (err) throw err;
+            console.table("Successful update!");
+            askQuestions();
+    })
+}
+    })
+}
+
+// Create the function addDP to add a new department. //
+
+
+
+// Create the function addRL to add a new role. //
+
+
+
+// Create the function editRL to edit an employee role. //
 
 
