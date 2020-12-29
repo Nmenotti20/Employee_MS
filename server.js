@@ -135,13 +135,13 @@ function addEE() {
         if (res.managerId) {
         connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [res.firstName, res.lastName, res.roleId, res.managerId], function(err, data) {
             if (err) throw err;
-            console.table("Successfully added!");
+            console.table("Employee successfully added!");
             askQuestions();
         })
     } else {
         connection.query('INSERT INTO employee (first_name, last_name, role_id) VALUES (?, ?, ?)', [res.firstName, res.lastName, res.roleId], function(err, data) {
             if (err) throw err;
-            console.table("Successful update!");
+            console.table("Employee successfully added!");
             askQuestions();
     })
 }
@@ -149,8 +149,19 @@ function addEE() {
 }
 
 // Create the function addDP to add a new department. //
-
-
+function addDP() {
+    inquirer.prompt([{
+        type: "input",
+        name: "department",
+        message: "Enter the name of the department you want to add... "
+    }, ]).then(function(res) {
+        connection.query('INSERT INTO department (name) VALUES (?)', [res.department], function(err, data) {
+            if (err) throw err;
+            console.table("Department successfully added!");
+            askQuestions();
+        })
+    })
+}
 
 // Create the function addRL to add a new role. //
 
