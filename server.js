@@ -1,7 +1,7 @@
 // Require mysql, inquirer and console.table modules //
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-// var consoleTable = require("console.table");
+require("console.table");
 
 // Your password
 // var password = require("./password");
@@ -18,7 +18,7 @@ var connection = mysql.createConnection({
   // Your username
   user: "root",
 
-    password: "",
+    password: "*Backtoschool1",
     
     // Your database
     database: "Employee_MS_db"
@@ -27,7 +27,8 @@ var connection = mysql.createConnection({
 // connect to the mysql server and sql database
 connection.connect(function(err) {
   if (err) throw err;
-
+  console.log("connected as id " + connection.threadId + "\n");
+  
   // run the start function after the connection is made to prompt the user
   startQuestions();
 });
@@ -36,7 +37,7 @@ connection.connect(function(err) {
 function startQuestions() {
     inquirer.prompt({
         name: "action",
-        message: "what would you like to do?",
+        message: "What would you like to do?",
         type: "list",
         choices: [
             "SHOW all EMPLOYEES",
