@@ -40,7 +40,13 @@ FOREIGN KEY (role_id) REFERENCES role(id),
 FOREIGN KEY (manager_id) REFERENCES role(id)
 );
 
-
+-- --
+INSERT INTO department (name) VALUES ("SALES"),("ENGINEERING"),("FINANCE"),("LEGAL");
+INSERT INTO role (title, salary, department_id) VALUES ("Salesperson", 50000, 5),("Sales Lead", 60000, 1),("Accountant", 75000, 1);
+INSERT INTO role ( title, salary , department_id) VALUES("Lawyer", 150000, 1);
+SELECT * FROM role LEFT JOIN department ON role.department_id = department.id;
+SELECT * FROM department RIGHT JOIN role ON role.department_id = department.id;
+SELECT * FROM department FULL JOIN role ON role.department_id = department.id;
 
 -- select from role --
 select * from role
