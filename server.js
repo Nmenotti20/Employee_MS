@@ -136,13 +136,13 @@ function addEE() {
         connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [res.firstName, res.lastName, res.roleId, res.managerId], function(err, data) {
             if (err) throw err;
             console.table("Employee successfully added!");
-            askQuestions();
+            startQuestions();
         })
     } else {
         connection.query('INSERT INTO employee (first_name, last_name, role_id) VALUES (?, ?, ?)', [res.firstName, res.lastName, res.roleId], function(err, data) {
             if (err) throw err;
             console.table("Employee successfully added!");
-            askQuestions();
+            startQuestions();
     })
 }
     })
@@ -158,14 +158,34 @@ function addDP() {
         connection.query('INSERT INTO department (name) VALUES (?)', [res.department], function(err, data) {
             if (err) throw err;
             console.table("Department successfully added!");
-            askQuestions();
+            startQuestions();
         })
     })
 }
 
 // Create the function addRL to add a new role. //
-
-
+function addRL() {
+    inquirer.prompt([
+        {
+            message: "Enter role title... ",
+            type: "input",
+            name: "title"
+        }, {
+            message: "Enter role salary... ",
+            type: "number",
+            name: "salary"
+        }, {
+            message: "Enter role department ID... ",
+            type: "number",
+            name: "department_id"
+        }
+    ]).then(function (response) {
+        connection.query("INSERT INTO roles (title, salary, department_id) values (?, ?, ?)", [response.title, response.salary, response.department_id], function (err, data) {
+            console.table(data);
+        })
+        startQuestions();
+    })
+}
 
 // Create the function editRL to edit an employee role. //
 
