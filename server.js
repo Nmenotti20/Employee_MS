@@ -1,12 +1,11 @@
 // Require mysql, inquirer and console.table modules //
-var mysql = require("mysql");
-var inquirer = require("inquirer");
-require("console.table");
+const mysql = require("mysql");
+const inquirer = require("inquirer");
 
 // Your password
-// var password = require("./password");
-//     // Then you can call the password with this code:
-//     password.getPassword()
+var password = require("./password");
+    // Then you can call the password with this code:
+    // password.getPassword()
 
 // create the connection information for the sql database
 var connection = mysql.createConnection({
@@ -18,7 +17,7 @@ var connection = mysql.createConnection({
   // Your username
   user: "root",
 
-    password: "*Backtoschool1",
+    password: password.getPassword(),
     
     // Your database
     database: "Employee_MS_db"
