@@ -26,7 +26,7 @@ var connection = mysql.createConnection({
 // connect to the mysql server and sql database
 connection.connect(function(err) {
   if (err) throw err;
-  console.log("connected as id " + connection.threadId + "\n");
+  console.log("Connection successfully established on thread id#: " + connection.threadId + "\n");
   
   // run the start function after the connection is made to prompt the user
   startQuestions();
@@ -50,8 +50,8 @@ function startQuestions() {
 
     // When the selection is made from the choices, console log the selection and then take action //
     }).then(responses => {
-        console.log(responses.selection);
-        switch (responses.selection) {
+        console.log(responses.action);
+        switch (responses.action) {
 
             // If SHOW all EMPLOYEES is selected, then showEE //
             case "SHOW all EMPLOYEES":
