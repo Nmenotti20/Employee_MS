@@ -1,6 +1,7 @@
 // Require mysql, inquirer and console.table modules //
 const mysql = require("mysql");
 const inquirer = require("inquirer");
+const cTbl = require("console.table");
 
 // Your password
 var password = require("./password");
