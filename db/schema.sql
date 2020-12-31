@@ -16,7 +16,7 @@ CREATE TABLE department (
 );
 
 -- create a table for "role" with "id", "title", "salary" and "department_id" --
-CREATE TABLE role (
+CREATE TABLE roles (
 	id INT NOT NULL AUTO_INCREMENT,
 	title VARCHAR(30) NOT NULL,
 	salary DECIMAL(10, 2) NOT NULL,
@@ -40,11 +40,11 @@ CREATE TABLE employee (
 );
 
 INSERT INTO department (name) VALUES ("SALES"),("ENGINEERING"),("FINANCE"),("LEGAL");
-INSERT INTO role (title, salary, department_id) VALUES ("Salesperson", 50000, 5),("Sales Lead", 60000, 1),("Accountant", 75000, 1);
-INSERT INTO role ( title, salary , department_id) VALUES("Lawyer", 150000, 1);
-SELECT * FROM role LEFT JOIN department ON role.department_id = department.id;
-SELECT * FROM department RIGHT JOIN role ON role.department_id = department.id;
+INSERT INTO roles (title, salary, department_id) VALUES ("Salesperson", 50000, 5),("Sales Lead", 60000, 1),("Accountant", 75000, 1);
+INSERT INTO roles ( title, salary , department_id) VALUES("Lawyer", 150000, 1);
+SELECT * FROM roles LEFT JOIN department ON roles.department_id = department.id;
+SELECT * FROM department RIGHT JOIN roles ON roles.department_id = department.id;
 
-SELECT * FROM role;
+SELECT * FROM roles;
 SELECT * FROM employee;
 SELECT * FROM department;

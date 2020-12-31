@@ -68,7 +68,7 @@ function startQuestions() {
             case "ADD a NEW EMPLOYEE":
                 addEE()
                 break;
-    
+       
             // If ADD a NEW DEPARTMENT is selected, then addDP //
             case "ADD a NEW DEPARTMENT":
                 addDP()
@@ -159,10 +159,10 @@ function addDP() {
         connection.query('INSERT INTO department (name) VALUES (?)', [res.department], function(err, data) {
             if (err) throw err;
             console.table("Department successfully added!");
-            startQuestions();
+            startQuestions(); 
+        })   
         })
-    })
-}
+    }
 
 // Create the function addRL to add a new role. //
 function addRL() {
@@ -207,4 +207,3 @@ function editRL() {
         startQuestions();
     })
 }
-
