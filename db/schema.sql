@@ -21,7 +21,7 @@ CREATE TABLE role (
 	title VARCHAR(30) NOT NULL,
 	salary DECIMAL(10, 2) NOT NULL,
 	department_id INT NOT NULL,
-	PRIMARY KEY (id),
+	PRIMARY KEY (id)
     
     -- FOREIGN KEY (department_id) REFERENCES department(id) --
 );
@@ -33,23 +33,18 @@ CREATE TABLE employee (
 	last_name VARCHAR(30) NOT NULL,
 	role_id INT NOT NULL,
 	manager_id INT NOT NULL,
-	PRIMARY KEY (id),
+	PRIMARY KEY (id)
     
     -- FOREIGN KEY (role_id) REFERENCES role(id), --
 	-- FOREIGN KEY (manager_id) REFERENCES role(id) --
 );
 
+INSERT INTO department (name) VALUES ("SALES"),("ENGINEERING"),("FINANCE"),("LEGAL");
+INSERT INTO role (title, salary, department_id) VALUES ("Salesperson", 50000, 5),("Sales Lead", 60000, 1),("Accountant", 75000, 1);
+INSERT INTO role ( title, salary , department_id) VALUES("Lawyer", 150000, 1);
+SELECT * FROM role LEFT JOIN department ON role.department_id = department.id;
+SELECT * FROM department RIGHT JOIN role ON role.department_id = department.id;
 
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password'
--- 
--- INSERT INTO department (name) VALUES ("SALES"),("ENGINEERING"),("FINANCE"),("LEGAL");
--- INSERT INTO role (title, salary, department_id) VALUES ("Salesperson", 50000, 5),("Sales Lead", 60000, 1),("Accountant", 75000, 1);
--- INSERT INTO role ( title, salary , department_id) VALUES("Lawyer", 150000, 1);
--- SELECT * FROM role LEFT JOIN department ON role.department_id = department.id;
--- SELECT * FROM department RIGHT JOIN role ON role.department_id = department.id;
--- SELECT * FROM department FULL JOIN role ON role.department_id = department.id; --
-
--- EXAMPLE OF JOIN TABELS------------------------------------------------
--- SELECT top_albums.year. top_albums.album, top_albums.position, top5000.song, top5000.artist FROM top_albums, INNER JOIN top5000 ON (top_albums.artist - top5000.artist AND top_albums.year - top5000.year) WHERE (top_albums.artist = "Madonna" AND top5000.artist = "Madonna") ORDER BY top_albums.year; --
-
--- select * from role
+SELECT * FROM role;
+SELECT * FROM employee;
+SELECT * FROM department;
