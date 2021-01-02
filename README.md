@@ -29,10 +29,7 @@ So that I can manage the labor portion of my business.
 
 [GitHub Repo](https://github.com/Nmenotti20/Employee_MS.git)<br>
 
-![Video Demo](https://drive.google.com/file/d/1bHoRMXGJqaKiXzBAd9aJFdDEpXxwSH03/view)<br>
-
-![Additional Links](./Assets/demo.gif)<br>
-
+![Demo GIF](./Assets/demo.gif)<br>
 
 ### Installation
 
