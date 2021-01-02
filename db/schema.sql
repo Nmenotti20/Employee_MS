@@ -11,7 +11,6 @@ USE Employee_MS_db;
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
-    -- department_id INT, --
     PRIMARY KEY (id)
 );
 
@@ -22,8 +21,6 @@ CREATE TABLE roles (
 	salary DECIMAL(10, 2) NOT NULL,
 	department_id INT NOT NULL,
 	PRIMARY KEY (id)
-    
-    -- FOREIGN KEY (department_id) REFERENCES department(id) --
 );
 
 -- create a table for "employee" with "id", "first_name", "last_name", "role_id", "manager_id" 
@@ -34,9 +31,6 @@ CREATE TABLE employee (
 	role_id INT NOT NULL,
 	manager_id INT NOT NULL,
 	PRIMARY KEY (id)
-    
-    -- FOREIGN KEY (role_id) REFERENCES role(id), --
-	-- FOREIGN KEY (manager_id) REFERENCES role(id) --
 );
 
 INSERT INTO department (name) VALUES ("SALES"),("ENGINEERING"),("FINANCE"),("LEGAL");
