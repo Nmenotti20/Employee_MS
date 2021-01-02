@@ -42,6 +42,7 @@ function startQuestions() {
         choices: [
             "SHOW all EMPLOYEES",
             "SHOW all DEPARTMENTS",
+            "SHOW all ROLES",
             "ADD a NEW EMPLOYEE",
             "ADD a NEW DEPARTMENT",
             "ADD a NEW ROLE",
@@ -63,7 +64,14 @@ function startQuestions() {
             case "SHOW all DEPARTMENTS":
                 showDP()
                 break;
-            
+
+            // If SHOW all ROLES is selected, then showRL //
+            //***********************************************************//
+            case "SHOW all ROLES":
+                showRL()
+                break;
+            //****************************************************** */
+
             // If ADD a NEW EMPLOYEE is selected, then addEE //
             case "ADD a NEW EMPLOYEE":
                 addEE()
@@ -96,6 +104,7 @@ function startQuestions() {
 // Create the function showEE to display the existing employees in the console.table. //
 function showEE() {
     connection.query("SELECT * FROM employee", function (err, data) {
+        console.log("\n" + "EMPLOYEES" + "\n");
         console.table(data);
         startQuestions();
     })
@@ -105,6 +114,16 @@ function showEE() {
 // Create the function showDP to display the existing departments in the console.table. //
 function showDP() {
     connection.query("SELECT * FROM department", function (err, data) {
+        console.log("\n" + "DEPARTMENTS" + "\n");
+        console.table(data);
+        startQuestions();
+    })
+}
+
+// Create the function showRL to display the existing roles in the console.table. //
+function showRL() {
+    connection.query("SELECT * FROM roles", function (err, data) {
+        console.log("\n" + "ROLES" + "\n");
         console.table(data);
         startQuestions();
     })
@@ -136,13 +155,13 @@ function addEE() {
         if (res.managerId) {
         connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [res.firstName, res.lastName, res.roleId, res.managerId], function(err, data) {
             if (err) throw err;
-            console.table("Employee successfully added!");
+            console.log("\n" + "EMPLOYEE successfully added!" + "\n");
             startQuestions();
         })
     } else {
         connection.query('INSERT INTO employee (first_name, last_name, role_id) VALUES (?, ?, ?)', [res.firstName, res.lastName, res.roleId], function(err, data) {
             if (err) throw err;
-            console.table("Employee successfully added!");
+            console.log("\n" + "EMPLOYEE successfully added!" + "\n");
             startQuestions();
     })
 }
@@ -158,7 +177,7 @@ function addDP() {
     }, ]).then(function(res) {
         connection.query('INSERT INTO department (name) VALUES (?)', [res.department], function(err, data) {
             if (err) throw err;
-            console.table("Department successfully added!");
+            console.log("\n" + "DEPARTMENT successfully added!" + "\n");
             startQuestions(); 
         })   
         })
@@ -181,10 +200,12 @@ function addRL() {
             name: "department_id"
         }
     ]).then(function (response) {
-        connection.query("INSERT INTO roles (title, salary, department_id) values (?, ?, ?)", [response.title, response.salary, response.department_id], function (err, data) {
-            console.table(data);
+        connection.query("INSERT INTO roles (title, salary, department_id) VALUES(?, ?, ?)", [response.title, response.salary, response.department_id],
+        function (err, data) {
+            if (err) throw err;
+            console.log("\n" + "ROLE successfully added!" + "\n");
+            startQuestions();
         })
-        startQuestions();
     })
 }
 
@@ -201,9 +222,11 @@ function editRL() {
             name: "role_id"
         }
     ]).then(function (response) {
-        connection.query("EDIT employee SET role_id = ? WHERE last_name = ?", [response.role_id, response.name], function (err, data) {
-            console.table(data);
+        connection.query("UPDATE employee SET role_id = ? WHERE last_name = ?", [response.role_id, response.last_name], 
+        function (err, data) {
+            if (err) throw err;
+            console.log("\n" + "ROLE succesfully edited! " + "\n")
+            startQuestions();
         })
-        startQuestions();
     })
 }

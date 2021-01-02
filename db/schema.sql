@@ -11,7 +11,7 @@ USE Employee_MS_db;
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
-    department_id INT,
+    -- department_id INT, --
     PRIMARY KEY (id)
 );
 
